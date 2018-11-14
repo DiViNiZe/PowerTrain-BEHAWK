@@ -1,6 +1,5 @@
 package com.behawk.powertrain.model;
 
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +9,6 @@ import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.databind.ser.std.SerializableSerializer;
 
-import org.hibernate.validator.constraints.UniqueElements;
 
 
 @Entity
