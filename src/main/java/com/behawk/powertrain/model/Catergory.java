@@ -1,0 +1,62 @@
+package com.behawk.powertrain.model;
+
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+
+import com.fasterxml.jackson.databind.ser.std.SerializableSerializer;
+
+import org.hibernate.validator.constraints.UniqueElements;
+
+
+@Entity
+public class Catergory extends SerializableSerializer{
+
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private long id;
+
+    @NotBlank
+    private String name;
+
+
+    private String descrioption;
+
+    
+    public long getId() {
+        return this.id;
+    }
+    
+    public void setId(long id) {
+        this.id = id;
+    }
+    
+    public String getName() {
+        return this.name;
+    }
+    
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    public String getDescrioption() {
+        return this.descrioption;
+    }
+    
+    public void setDescrioption(String descrioption) {
+        this.descrioption = descrioption;
+    }
+    
+    @Override
+    public String toString() {
+        return "{" +
+            " id='" + getId() + "'" +
+            ", name='" + getName() + "'" +
+            ", descrioption='" + getDescrioption() + "'" +
+            "}";
+    }
+}
