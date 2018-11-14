@@ -5,13 +5,27 @@
  */
 package com.behawk.powertrain.service;
 
+import com.behawk.powertrain.Repository.ProductRepository;
+import com.behawk.powertrain.model.Product;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
  *
- * @author varavut
+ * @author vuttichai
  */
 @Service
 public class ProductService {
-    
+
+    @Autowired
+    ProductRepository productRepository;
+
+    public List<Product> searchProduct() {
+        return productRepository.findAll();
+    }
+
+    public List<Product> findByProductNameIgnoreCase(String productName){
+        return productRepository.findByProductNameIgnoreCase(productName);
+    }
 }

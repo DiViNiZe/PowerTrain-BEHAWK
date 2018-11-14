@@ -5,16 +5,13 @@
  */
 package com.behawk.powertrain.Repository;
 
-import com.behawk.powertrain.model.Product;
-import java.util.List;
+import com.behawk.powertrain.model.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 /**
  *
- * @author vuttichai
+ * @author benz
  */
-@Repository
-public interface ProductRepository extends JpaRepository<Product, Long> {
-    public List<Product> findByProductNameIgnoreCase(String productName); 
+public interface CategoryRepository extends JpaRepository<Category, Integer> {
+    
 }
