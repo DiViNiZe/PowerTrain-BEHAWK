@@ -20,7 +20,6 @@ public class Cart extends SerializableSerializer{
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private long id;
-
     private float price;
 
     public long getId() {
