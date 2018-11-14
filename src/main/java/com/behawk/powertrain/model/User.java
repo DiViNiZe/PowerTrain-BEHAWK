@@ -6,11 +6,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.databind.ser.std.SerializableSerializer;
+
 import org.hibernate.validator.constraints.UniqueElements;
 
 
 @Entity
-public class User{
+public class User extends SerializableSerializer{
     
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
