@@ -5,15 +5,13 @@
  */
 package com.behawk.powertrain.Repository;
 
-import com.behawk.powertrain.model.Product;
+import com.behawk.powertrain.model.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 /**
  *
- * @author varavut
+ * @author benz
  */
-@Repository
-public interface ProductRepository extends JpaRepository<Product, Long> {
+public interface CategoryRepository extends JpaRepository<Category, Integer> {
     
 }

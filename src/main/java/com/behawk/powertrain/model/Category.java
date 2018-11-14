@@ -12,7 +12,7 @@ import com.fasterxml.jackson.databind.ser.std.SerializableSerializer;
 
 
 @Entity
-public class Catergory extends SerializableSerializer{
+public class Category extends SerializableSerializer{
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
