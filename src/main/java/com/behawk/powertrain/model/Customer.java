@@ -2,11 +2,17 @@ package com.behawk.powertrain.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.databind.ser.std.SerializableSerializer;
 
@@ -14,17 +20,34 @@ import org.hibernate.validator.constraints.UniqueElements;
 
 
 @Entity
+@Table(name="customers")
 public class Customer extends SerializableSerializer{
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private long id;
+    
+    @NotBlank
     private String customerName;
+
+    @NotBlank
     private String customerSurname;
+    
+    @NotBlank
     private String email;
+
+    @NotNull
     private int phone;
+
+    @NotBlank
+    @OneToOne
     private User user;
+
+    @NotBlank
     private Cart shoppingCart;
+
+    @NotBlank
+    @OneToMany(fetch=FetchType.EAGER ,cascade=CascadeType.DETACH)
     private List<Product> product;
     
     public long getId() {
