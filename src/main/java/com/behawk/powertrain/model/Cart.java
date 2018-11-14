@@ -19,9 +19,10 @@ public class Cart extends SerializableSerializer{
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private long id;
-    private float price;
-
+    private long  id;
+    private float totalPrice;
+    private List<Product> product;
+    
     public long getId() {
         return this.id;
     }
@@ -30,12 +31,22 @@ public class Cart extends SerializableSerializer{
         this.id = id;
     }
 
-    public float getPrice() {
-        return this.price;
+    public float getTotalPrice() {
+        return totalPrice;
     }
 
-    public void setPrice(float price) {
-        this.price = price;
+    public void setTotalPrice(float totalPrice) {
+        this.totalPrice = totalPrice;
     }
+
+    public List<Product> getProduct() {
+        return product;
+    }
+
+    public void setProduct(List<Product> product) {
+        this.product = product;
+    }
+
+    
 
 }
