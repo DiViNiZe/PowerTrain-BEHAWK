@@ -5,6 +5,9 @@
  */
 package com.behawk.powertrain.controller;
 
+import com.behawk.powertrain.Repository.CategoryRepository;
+import com.behawk.powertrain.model.Category;
+import java.util.List;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -13,8 +16,10 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 public class CategoryController {
+    private CategoryRepository categoryRepo;
+    
     @GetMapping("/category")
-    public int getAllCategory(){
-        return 0;
+    public List<Category> getAllCategory(){
+        return categoryRepo.findAll();
     }
 }
