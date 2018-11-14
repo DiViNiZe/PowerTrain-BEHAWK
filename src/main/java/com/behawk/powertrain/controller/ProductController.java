@@ -19,7 +19,7 @@ public class ProductController {
         return null;
     }
 
-    @GetMapping("/products")
+    @GetMapping("/products/{campaign_name}")
     public ResponseEntity<List<Product>> getProductByCampaignName(
         @RequestParam("campaign_name") String targetCampaignName,
         @RequestParam("sortBy") String sortType,
@@ -28,8 +28,8 @@ public class ProductController {
     }
 
     @GetMapping("/product/{id}")
-    public ResponseEntity<Product> getProductById(@PathVariable long id){
-        return null;
+    public long getProductById(@PathVariable long id){
+        return id;
     }
 
     @GetMapping("/products/bestSell")
