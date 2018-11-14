@@ -5,17 +5,34 @@
  */
 package com.behawk.powertrain.controller;
 
+
 import com.behawk.powertrain.model.Product;
+import com.behawk.powertrain.service.ProductService;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
- * @author varavut
+ * @author vuttichai
  */
 @RestController
 @RequestMapping("/url/serarch")
 public class SearchController {
+    @Autowired
+    ProductService productService;
     
+    public List<Product> search(@RequestParam(required = false) String productName){
+        if(productName == null){
+            List<Product> products = productService.searchProduct();
+            return products;
+        }
+        return productService.findByProductNameIgnoreCase(productName);
+        
+    }
+            
+
 }
