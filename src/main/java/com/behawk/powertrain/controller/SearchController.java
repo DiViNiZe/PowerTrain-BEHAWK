@@ -28,7 +28,7 @@ public class SearchController {
     @GetMapping("/search?title={title}")
     public List<Product> search(@RequestParam String productName){
         if(productName == null){
-            List<Product> products = productService.searchProduct();
+            List<Product> products = productService.findAllProduct();
             return products;
         }
         return productService.findByProductNameIgnoreCase(productName);

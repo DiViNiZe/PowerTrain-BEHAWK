@@ -7,12 +7,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 
-//import com.fasterxml.jackson.databind.ser.std.SerializableSerializer;
+import com.fasterxml.jackson.databind.ser.std.SerializableSerializer;
 import java.io.Serializable;
+import javax.persistence.Table;
 
 
 
 @Entity
+@Table(name = "Product")
 public class Product implements Serializable{
 
     @Id
