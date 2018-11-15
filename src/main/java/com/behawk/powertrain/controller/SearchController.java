@@ -20,11 +20,12 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author vuttichai
  */
 @RestController
-@RequestMapping("/url/serarch")
+@RequestMapping()
 public class SearchController {
     @Autowired
     ProductService productService;
     
+    @GetMapping("/search?title={title}")
     public List<Product> search(@RequestParam(required = false) String productName){
         if(productName == null){
             List<Product> products = productService.searchProduct();

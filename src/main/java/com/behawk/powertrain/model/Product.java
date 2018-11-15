@@ -23,10 +23,8 @@ public class Product extends SerializableSerializer{
 
     private String description;
 
-    @NotBlank
     private double price;
 
-    @NotBlank
     private int view;
 
     public long getId() {
