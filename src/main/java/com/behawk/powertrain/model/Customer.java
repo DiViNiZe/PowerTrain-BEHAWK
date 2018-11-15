@@ -14,14 +14,15 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.databind.ser.std.SerializableSerializer;
+
+import java.io.Serializable;
 
 import org.hibernate.validator.constraints.UniqueElements;
 
 
 @Entity
 @Table(name="customers")
-public class Customer extends SerializableSerializer{
+public class Customer implements Serializable{
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)

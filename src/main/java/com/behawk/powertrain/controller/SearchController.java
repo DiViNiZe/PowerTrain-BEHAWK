@@ -26,7 +26,7 @@ public class SearchController {
     ProductService productService;
     
     @GetMapping("/search?title={title}")
-    public List<Product> search(@RequestParam(required = false) String productName){
+    public List<Product> search(@RequestParam String productName){
         if(productName == null){
             List<Product> products = productService.searchProduct();
             return products;

@@ -7,12 +7,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 
-import com.fasterxml.jackson.databind.ser.std.SerializableSerializer;
+//import com.fasterxml.jackson.databind.ser.std.SerializableSerializer;
+import java.io.Serializable;
 
 
 
 @Entity
-public class Category extends SerializableSerializer{
+public class Category implements Serializable{
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)

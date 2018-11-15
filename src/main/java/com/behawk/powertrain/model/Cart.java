@@ -9,13 +9,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
-import com.fasterxml.jackson.databind.ser.std.SerializableSerializer;
+import java.io.Serializable;
 
 
 
 @Entity
 @Table(name="cart")
-public class Cart extends SerializableSerializer{
+public class Cart implements Serializable{
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
