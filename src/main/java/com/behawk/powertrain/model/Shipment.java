@@ -6,13 +6,17 @@
 package com.behawk.powertrain.model;
 
 import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  *
  * @author vuttichai
  */
+@Entity
 public class Shipment implements Serializable {
 
+    @Id
     private long shipmentid;
 
     private String shipmentType;
