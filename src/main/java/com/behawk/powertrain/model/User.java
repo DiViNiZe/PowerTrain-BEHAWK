@@ -11,14 +11,17 @@ import com.fasterxml.jackson.databind.ser.std.SerializableSerializer;
 
 import org.hibernate.validator.constraints.UniqueElements;
 
-
 @Entity
-@Table(name="users")
-public class User extends SerializableSerializer{
-    
+@Table(name = "users")
+public class User extends SerializableSerializer {
+
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long userId;
+
+    private String firstName;
+
+    private String lastName;
 
     @UniqueElements
     @NotBlank
@@ -26,55 +29,73 @@ public class User extends SerializableSerializer{
 
     @NotBlank
     private String password;
-    
-    /**
-     * @return the id
-     */
-    public long getId() {
-        return id;
+
+    private String email;
+
+    private String phoneNumber;
+
+    public User() {
     }
-    
-    /**
-     * @return the password
-     */
-    public String getPassword() {
-        return password;
+
+    public long getUserId() {
+        return userId;
     }
-    
-    /**
-     * @param password the password to set
-     */
-    public void setPassword(String password) {
-        this.password = password;
+
+    public void setUserId(long userId) {
+        this.userId = userId;
     }
-    
-    /**
-     * @return the username
-     */
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
     public String getUsername() {
         return username;
     }
-    
-    /**
-     * @param username the username to set
-     */
+
     public void setUsername(String username) {
         this.username = username;
     }
-    
-    /**
-     * @param id the id to set
-     */
-    public void setId(long id) {
-        this.id = id;
+
+    public String getPassword() {
+        return password;
     }
-    
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
     @Override
     public String toString() {
-        return "{" +
-            " id='" + getId() + "'" +
-            ", username='" + getUsername() + "'" +
-            ", password='" + getPassword() + "'" +
-            "}";
+        return "User{" + "userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName + ", username=" + username + ", password=" + password + ", email=" + email + ", phoneNumber=" + phoneNumber + '}';
     }
+
 }

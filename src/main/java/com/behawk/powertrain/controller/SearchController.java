@@ -24,7 +24,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class SearchController {
     @Autowired
     ProductService productService;
-    
     @GetMapping("/search?title={title}")
     public List<Product> search(@RequestParam String productName){
         if(productName == null){
@@ -32,8 +31,5 @@ public class SearchController {
             return products;
         }
         return productService.findByProductNameIgnoreCase(productName);
-        
     }
-            
-
 }
