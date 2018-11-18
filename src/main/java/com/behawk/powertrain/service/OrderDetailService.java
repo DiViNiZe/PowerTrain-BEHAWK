@@ -27,4 +27,14 @@ public class OrderDetailService {
         orderDetailRepository.save(orderDetail);
         return orderDetail;
     }
+    
+    public boolean removeItemOnCart(long orderDetailId){
+        orderDetailRepository.deleteById(orderDetailId);
+        if(orderDetailRepository.existsById(orderDetailId)==false){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }
