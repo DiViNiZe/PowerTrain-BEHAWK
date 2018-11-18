@@ -9,17 +9,21 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author Supakorn
  */
 @Entity
+@Table(name = "Order")
+       
 public class Order implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long orderId;
     private String dateCreated;
     private String dateShipped;

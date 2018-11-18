@@ -5,23 +5,30 @@
  */
 package com.behawk.powertrain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.sun.org.apache.xml.internal.serializer.Serializer;
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author Supakorn
  */
 @Entity
-public class OrderDetail {
+@Table(name = "OrderDetail")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+public class OrderDetail implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long orderDetailId;
     private int quantity;
     private double totalPrice;
+    private long productId;
 
     public OrderDetail() {
     }
@@ -48,6 +55,14 @@ public class OrderDetail {
 
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    public long getProductId() {
+        return productId;
+    }
+
+    public void setProductId(long productId) {
+        this.productId = productId;
     }
 
     @Override
