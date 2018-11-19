@@ -23,7 +23,7 @@ public class ProductController {
     @Autowired
     private ProductService productService;
     
-    @GetMapping("/products")
+    @GetMapping("/product")
     public List<Product> getProductbyProduct(@RequestParam(required = false) String product){
         List<Product> productList = productService.findAllProduct(); 
         return productService.findAllProduct();
@@ -34,7 +34,7 @@ public class ProductController {
         return productService.findProductById(id);
     }
 
-    @GetMapping("/products/{campaign_name}")
+    @GetMapping("/product/{campaign_name}")
     public ResponseEntity<List<Product>> getProductByCampaignName(
         @RequestParam("campaign_name") String targetCampaignName,
         @RequestParam("sortBy") String sortType,
