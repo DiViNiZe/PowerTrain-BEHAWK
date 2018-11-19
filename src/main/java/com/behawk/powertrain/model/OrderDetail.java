@@ -35,7 +35,7 @@ public class OrderDetail implements Serializable {
     @Transient
     private double totalPrice;
 
-    @OneToMany(fetch=FetchType.EAGER,targetEntity=Product.class)
+    @ManyToOne(fetch=FetchType.EAGER,targetEntity=Product.class)
     @JoinColumn(name="productId")
     private Product product;
 
