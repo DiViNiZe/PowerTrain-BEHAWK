@@ -25,7 +25,27 @@ public class ProductService {
         return productRepository.findAll();
     }
 
+    public Product findProductById(long id){
+        return productRepository.getOne(id);
+    }
+
+    public Product createProduct(Product product){
+        return productRepository.save(product);
+    }
+    
+    public Product updateProduct(Product product){
+        return productRepository.save(product);
+    }
+
+    public void deleteProductById(long id){
+        Product targetProduct = findProductById(id);
+        productRepository.delete(targetProduct);
+    }
+
     public List<Product> findByProductNameIgnoreCase(String productName){
         return productRepository.findByProductNameIgnoreCase(productName);
     }
+
+    
+    
 }
