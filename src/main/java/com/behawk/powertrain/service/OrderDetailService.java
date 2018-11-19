@@ -28,8 +28,7 @@ public class OrderDetailService {
         orderDetailRepository.deleteById(orderDetailId);
         if(orderDetailRepository.existsById(orderDetailId)==false){
             return true;
-        }
-        else{
+        }else{
             return false;
         }
     }

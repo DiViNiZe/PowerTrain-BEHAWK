@@ -2,6 +2,7 @@ package com.behawk.powertrain.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -28,6 +29,14 @@ public class Cart extends SerializableSerializer{
     @OneToOne(fetch=FetchType.EAGER)
     private User user;
 
+    public User getUser() {
+        return this.user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public long getId() {
         return this.id;
     }
@@ -44,12 +53,5 @@ public class Cart extends SerializableSerializer{
         this.order = order;
     }
 
-    public User getuser() {
-        return this.user;
-    }
-
-    public void setuser(User user) {
-        this.user = user;
-    }
 }
 

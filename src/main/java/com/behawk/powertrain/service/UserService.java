@@ -23,4 +23,8 @@ public class UserService {
     public User getUserById(long id) {
         return userRepository.getOne(id);
     }
+
+    public User createUser(User user){
+        user.set
+    }
 }

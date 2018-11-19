@@ -54,8 +54,7 @@ public class ProductController {
     
     @DeleteMapping("/product/{id}")
     public boolean deleteProduct(@RequestBody long id){
-        productService.deleteProductById(id);
-        return true;
+       return productService.deleteProductById(id);
     }
 }
 
