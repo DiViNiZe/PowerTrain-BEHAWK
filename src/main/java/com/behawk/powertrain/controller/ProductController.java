@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -24,6 +26,11 @@ public class ProductController {
         List<Product> productList = productService.findAllProduct(); 
         return productService.findAllProduct();
     }
+    
+    @GetMapping("/product/{id}")
+    public Product getProductById(@PathVariable long id){
+        return productService.findProductById(id);
+    }
 
     @GetMapping("/products/{campaign_name}")
     public ResponseEntity<List<Product>> getProductByCampaignName(
@@ -32,16 +39,11 @@ public class ProductController {
         @RequestParam("pageNumber")int paging){
             return null;
     }
-
-    @GetMapping("/product/{id}")
-    public long getProductById(@PathVariable long id){
-        return id;
+    
+    @PostMapping("/product")
+    public Product createProduct(@RequestBody Product product){
+        return productService.createProduct(product);
     }
-
-    @GetMapping("/products/bestSell")
-    public ResponseEntity<List<Product>> getBestSellProduct(){
-        return null;
-    }
-
-
 }
+
+
