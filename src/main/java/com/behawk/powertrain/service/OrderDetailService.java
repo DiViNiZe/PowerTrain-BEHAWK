@@ -20,12 +20,8 @@ public class OrderDetailService {
     @Autowired
     private OrderDetailRepository orderDetailRepository;
 
-    public OrderDetail UpdateOrderDetailQty(long orderDetailId, int orderDetailQty) {
-        OrderDetail orderDetail = new OrderDetail();
-        orderDetail = orderDetailRepository.getOne(orderDetailId);
-        orderDetail.setQuantity(orderDetailQty);
-        orderDetailRepository.save(orderDetail);
-        return orderDetail;
+    public OrderDetail UpdateOrderDetailQty(OrderDetail newOrderDetail) {
+        return orderDetailRepository.save(newOrderDetail);
     }
     
     public boolean removeItemOnCart(long orderDetailId){

@@ -6,8 +6,10 @@
 package com.behawk.powertrain.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -18,8 +20,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 /**
@@ -36,10 +39,15 @@ public class Order implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long orderId;
 
-    private String dateCreated;
+    @Basic
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dateCreated;
+    
+    @Basic
+    @Temporal(TemporalType.TIME)
+    private Date dateShipped;
 
-    private String dateShipped;
-
+    
     @ManyToOne(optional=true,targetEntity=Status.class)
     @JoinColumn(name="statusId")
     private Status status;
@@ -47,31 +55,31 @@ public class Order implements Serializable {
     @ManyToOne(optional=false,targetEntity=User.class)
     @JoinColumn(name="userId")
     private User user;
-
+    
     @OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.REMOVE,targetEntity=OrderDetail.class)
     private List<OrderDetail> orderDetail;
-
+    
     public long getOrderId() {
         return orderId;
     }
-
+    
     public void setOrderId(long orderId) {
         this.orderId = orderId;
     }
-
-    public String getDateCreated() {
-        return dateCreated;
+    
+    public Date getDateCreated() {
+        return this.dateCreated;
     }
-
-    public void setDateCreated(String dateCreated) {
+    
+    public void setDateCreated(Date dateCreated) {
         this.dateCreated = dateCreated;
     }
-
-    public String getDateShipped() {
-        return dateShipped;
+    
+    public Date getDateShipped() {
+        return this.dateShipped;
     }
 
-    public void setDateShipped(String dateShipped) {
+    public void setDateShipped(Date dateShipped) {
         this.dateShipped = dateShipped;
     }
 
@@ -79,5 +87,5 @@ public class Order implements Serializable {
     public String toString() {
         return "Order{" + "orderId=" + orderId + ", dateCreated=" + dateCreated + ", dateShipped=" + dateShipped + '}';
     }
-
+    
 }

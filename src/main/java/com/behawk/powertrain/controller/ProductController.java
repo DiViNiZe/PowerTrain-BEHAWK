@@ -52,9 +52,10 @@ public class ProductController {
         return productService.updateProduct(product);
     }
     
-    @DeleteMapping("/roduct/product{id}")
-    public Product deleteProduct(@RequestBody Product product){
-        return productService.updateProduct(product);
+    @DeleteMapping("/product/{id}")
+    public boolean deleteProduct(@RequestBody long id){
+        productService.deleteProductById(id);
+        return true;
     }
 }
 
