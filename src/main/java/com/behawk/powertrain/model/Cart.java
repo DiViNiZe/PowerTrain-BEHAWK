@@ -25,5 +25,31 @@ public class Cart extends SerializableSerializer{
     @OneToOne(fetch=FetchType.EAGER)
     private Order order;
 
+    @OneToOne(fetch=FetchType.EAGER)
+    private User userId;
+
+    public long getId() {
+        return this.id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Order getOrder() {
+        return this.order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
+    public User getUserId() {
+        return this.userId;
+    }
+
+    public void setUserId(User userId) {
+        this.userId = userId;
+    }
 }
 
