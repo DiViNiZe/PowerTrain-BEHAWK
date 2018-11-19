@@ -8,6 +8,8 @@ package com.behawk.powertrain.Repository;
 import com.behawk.powertrain.model.Product;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -16,7 +18,8 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
-    public List<Product> findByProductNameIgnoreCase(String productName); 
-
-    public boolean existsByProductName(String productName);
+    
+    @Query("SELECT p FROM Product p WHERE p.productName LIKE CONCAT('%',:productName,'%')")
+    public List<Product> findByProductName(@Param("productName") String productName);
+    
 }

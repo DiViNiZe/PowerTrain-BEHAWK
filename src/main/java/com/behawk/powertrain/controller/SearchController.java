@@ -30,8 +30,8 @@ public class SearchController {
     public ResponseEntity<List<Product>> search(@RequestParam(required = false)  String productName){
         if(productName == null){
             List<Product> products = productService.findAllProduct();
-            return new ResponseEntity<List<Product>>(products, HttpStatus.OK);
+            return new ResponseEntity<List<Product>>(products,HttpStatus.OK);
         }
-        return productService.findByProductNameIgnoreCase(productName);
+        return productService.findByProductName(productName);
     }
 }

@@ -46,12 +46,13 @@ public class ProductService {
         productRepository.delete(targetProduct);
     }
 
-    public ResponseEntity<List<Product>> findByProductNameIgnoreCase(String productName) {
-        if (productRepository.existsByProductName(productName) == false) {
-            return new ResponseEntity<List<Product>>(new ArrayList<Product>(), HttpStatus.NOT_FOUND);
-        }else {
-            return new ResponseEntity<List<Product>>(productRepository.findByProductNameIgnoreCase(productName), HttpStatus.OK);
+    public ResponseEntity<List<Product>> findByProductName(String productName) {
+        List<Product> products  = productRepository.findByProductName(productName);
+        if (products.size()==0) {
+            return new ResponseEntity<List<Product>>(products, HttpStatus.NOT_FOUND);
         }
+        return new ResponseEntity<List<Product>>(products, HttpStatus.OK);
+    
     }
 
 }
