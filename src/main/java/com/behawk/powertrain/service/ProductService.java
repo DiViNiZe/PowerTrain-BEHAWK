@@ -41,9 +41,10 @@ public class ProductService {
         return productRepository.save(product);
     }
 
-    public void deleteProductById(long id) {
+    public boolean deleteProductById(long id){
         Product targetProduct = findProductById(id);
         productRepository.delete(targetProduct);
+        return true;
     }
 
     public ResponseEntity<List<Product>> findByProductName(String productName) {

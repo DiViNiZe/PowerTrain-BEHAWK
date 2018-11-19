@@ -6,6 +6,7 @@
 package com.behawk.powertrain.service;
 
 import com.behawk.powertrain.Repository.UserRepository;
+import com.behawk.powertrain.model.Cart;
 import com.behawk.powertrain.model.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,5 +23,11 @@ public class UserService {
     
     public User getUserById(long id) {
         return userRepository.getOne(id);
+    }
+
+    public User createUser(User user){
+        Cart userCart = new Cart();
+        user.setCart(userCart);
+        return userRepository.save(user);
     }
 }

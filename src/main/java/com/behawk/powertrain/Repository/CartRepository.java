@@ -10,5 +10,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author benz
  */
 public interface CartRepository extends JpaRepository<Cart, Long> {
-
+    public Cart findByUserUserId(long id);
 }

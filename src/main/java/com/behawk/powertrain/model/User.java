@@ -1,9 +1,12 @@
 package com.behawk.powertrain.model;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
@@ -29,6 +32,10 @@ public class User extends SerializableSerializer {
 
     @NotBlank
     private String password;
+
+    @OneToOne(fetch=FetchType.EAGER,targetEntity=Cart.class)
+    @JoinColumn(name="id")
+    private Cart cart;
 
     private String email;
 
@@ -91,6 +98,14 @@ public class User extends SerializableSerializer {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public Cart getCart() {
+        return this.cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
 
     @Override
