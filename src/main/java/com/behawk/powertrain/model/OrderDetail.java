@@ -9,10 +9,15 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.org.apache.xml.internal.serializer.Serializer;
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  *
@@ -27,10 +32,19 @@ public class OrderDetail implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long orderDetailId;
     private int quantity;
+    @Transient
     private double totalPrice;
-    private long productId;
 
-    public OrderDetail() {
+    @OneToMany(fetch=FetchType.EAGER,targetEntity=Product.class)
+    @JoinColumn(name="productId")
+    private Product product;
+
+    public Product getProduct() {
+        return this.product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public long getOrderDetailId() {
@@ -55,14 +69,6 @@ public class OrderDetail implements Serializable {
 
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
-    }
-
-    public long getProductId() {
-        return productId;
-    }
-
-    public void setProductId(long productId) {
-        this.productId = productId;
     }
 
     @Override
