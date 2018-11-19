@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author Supakorn
  */
 @RestController
-@RequestMapping("/url")
 public class OrderController {
     
 }

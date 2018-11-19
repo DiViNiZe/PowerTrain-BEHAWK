@@ -6,11 +6,13 @@
 package com.behawk.powertrain.controller;
 
 import com.behawk.powertrain.model.OrderDetail;
+import com.behawk.powertrain.model.Product;
 import com.behawk.powertrain.service.OrderDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,11 +26,16 @@ public class OrderDetailController {
 
     @Autowired
     private OrderDetailService orderDetailService;
+    
 
-    @PatchMapping("/cart/orderdetail/{orderDetailId}")
-    public OrderDetail updateOrderDetailQty(@PathVariable long orderDetailId, @RequestBody(required = false) OrderDetail orderDetailBody) {
-        int orderDetailQty = orderDetailBody.getQuantity();
-        OrderDetail orderDetail = orderDetailService.UpdateOrderDetailQty(orderDetailId, orderDetailQty);
+    @PostMapping("/cart/orderdetail/{userId}")
+    public OrderDetail createOrder(@PathVariable long userId,@RequestBody Product product){
+        return null;
+    }
+
+    @PatchMapping("/cart/orderdetail")
+    public OrderDetail updateOrderDetailQty(@RequestBody OrderDetail orderDetailBody) {
+        OrderDetail orderDetail = orderDetailService.UpdateOrderDetailQty(orderDetailBody);
         return orderDetail;
     }
     
