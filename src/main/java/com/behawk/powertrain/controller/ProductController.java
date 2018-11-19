@@ -24,6 +24,7 @@ public class ProductController {
         List<Product> productList = productService.findAllProduct(); 
         return productService.findAllProduct();
     }
+
     @GetMapping("/products/{campaign_name}")
     public ResponseEntity<List<Product>> getProductByCampaignName(
         @RequestParam("campaign_name") String targetCampaignName,
