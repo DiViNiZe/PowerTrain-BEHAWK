@@ -3,9 +3,11 @@ package com.behawk.powertrain.model;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.databind.ser.std.SerializableSerializer;
@@ -20,4 +22,8 @@ public class Cart extends SerializableSerializer{
     @GeneratedValue(strategy=GenerationType.AUTO)
     private long id;
 
-    
+    @OneToOne(fetch=FetchType.EAGER)
+    private Order order;
+
+}
+
