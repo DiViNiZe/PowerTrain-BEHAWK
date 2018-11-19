@@ -22,7 +22,12 @@ public class CartService {
     @Autowired
     private OrderDetailRepository orderDetailRepository;
 
+    @Autowired
+    private UserService userService;
+
     public Cart createCart(long userId){
-        
+        Cart userNewCart = new Cart();
+        userNewCart.setuser(userService.getUserById(userId));
+        return userNewCart;
     }
 }

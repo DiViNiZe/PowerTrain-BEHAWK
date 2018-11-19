@@ -26,7 +26,7 @@ public class Cart extends SerializableSerializer{
     private Order order;
 
     @OneToOne(fetch=FetchType.EAGER)
-    private User userId;
+    private User user;
 
     public long getId() {
         return this.id;
@@ -44,12 +44,12 @@ public class Cart extends SerializableSerializer{
         this.order = order;
     }
 
-    public User getUserId() {
-        return this.userId;
+    public User getuser() {
+        return this.user;
     }
 
-    public void setUserId(User userId) {
-        this.userId = userId;
+    public void setuser(User user) {
+        this.user = user;
     }
 }
 
