@@ -15,6 +15,7 @@ import com.behawk.powertrain.Repository.CartRepository;
 import com.behawk.powertrain.model.Cart;
 import com.behawk.powertrain.model.Order;
 import com.behawk.powertrain.model.OrderDetail;
+import com.behawk.powertrain.model.Payment;
 import com.behawk.powertrain.model.Product;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,8 +42,12 @@ public class CartService {
     public Cart addProductById(long productId,long userId){
         Product targetProduct = productService.findProductById(productId);
         Cart userCart = getCartByUserId(userId);
+        System.out.println("************************");
+        System.out.println(userCart.getOrder().toString());
         Order cartOrder = userCart.getOrder();
         cartOrder.setDateCreated(new Date());
+        cartOrder.setStatus("INCART");
+        cartOrder.setPayment(new Payment());
         List<OrderDetail> orderDetails = null;
         try{
             orderDetails = cartOrder.getOrderDetail();

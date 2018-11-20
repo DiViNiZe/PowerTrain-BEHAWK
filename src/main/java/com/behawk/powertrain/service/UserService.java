@@ -9,8 +9,10 @@ import javax.transaction.Transactional;
 
 import com.behawk.powertrain.Repository.CartRepository;
 import com.behawk.powertrain.Repository.UserRepository;
+import com.behawk.powertrain.model.Address;
 import com.behawk.powertrain.model.Cart;
 import com.behawk.powertrain.model.Order;
+import com.behawk.powertrain.model.Payment;
 import com.behawk.powertrain.model.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,9 +36,11 @@ public class UserService {
 
     public User createUser(User user){
         Cart userCart = new Cart();
+        user.setAddress(new Address());
         user = userRepository.save(user);
         userCart.setUser(user);
         Order userOrder = new Order();
+        userOrder.setPayment(new Payment());
         userOrder.setUser(user);
         userCart.setOrder(userOrder);
         cartRepository.save(userCart);
