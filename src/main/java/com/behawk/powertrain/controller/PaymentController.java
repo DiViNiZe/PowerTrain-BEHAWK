@@ -26,9 +26,5 @@ public class PaymentController {
     @Autowired
     PaymentService paymentService;
     
-    @PostMapping("/payment")
-    public boolean payment(@RequestBody String paymentToken,@RequestBody long orderId){
-        return paymentService.confirmPayment(paymentToken, orderId);
-    }
     
 }

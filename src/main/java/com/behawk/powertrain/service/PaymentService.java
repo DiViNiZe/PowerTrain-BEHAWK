@@ -10,7 +10,6 @@ import com.behawk.powertrain.model.OrderDetail;
 import com.behawk.powertrain.model.Payment;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 /**
  *
@@ -33,8 +32,8 @@ public class PaymentService {
         return paymentRepository.save(payment);
     }
     
-    public boolean confirmPayment(String paymentToken, long orderId){
-        Order order = orderRepository.findOrderByOrderId(orderId);
+    public boolean confirmPayment(String paymentToken, Order order){
+        boolean result = false;
         List<OrderDetail> detail = order.getOrderDetail();
         double money = 0;
         for(OrderDetail od : detail){
@@ -47,11 +46,11 @@ public class PaymentService {
                                         .currency("THB")
                                         .card(paymentToken)
                             );
-            return true;
+            result = true;
         }
         catch (Exception e){
             e.printStackTrace();
         }
-        return false;
+        return result;
     }
 }
