@@ -25,7 +25,7 @@ public class PaymentService {
         return paymentRepository.save(payment);
     }
     
-    public boolean confirmPayment(){
+    public boolean confirmPayment(String paymentToken, long orderId){
         return false;
     }
     

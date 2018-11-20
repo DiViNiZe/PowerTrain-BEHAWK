@@ -27,8 +27,8 @@ public class PaymentController {
     PaymentService paymentService;
     
     @PostMapping("/payment")
-    public boolean payment(@RequestBody String paymentToken){
-        return paymentService.confirmPayment();
+    public boolean payment(@RequestBody String paymentToken,@RequestBody long orderId){
+        return paymentService.confirmPayment(paymentToken, orderId);
     }
     
 }
