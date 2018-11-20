@@ -26,21 +26,5 @@ public class PaymentController {
     @Autowired 
     PaymentService paymentService;
 
-
-    @GetMapping("/payment/{orderId}")
-    public Payment getPaymentByOrderId(@PathVariable long orderId){
-        Order targetOrder = orderService.getOrderById(orderId);
-        Payment payment = targetOrder.getPayment();
-        if(payment == null){
-            return new Payment();
-        }else{
-            return payment;
-        }
-    }
-
-    @PostMapping("/payment")
-    public Payment addPayment(@RequestBody Payment payment){
-        return paymentService.updatePayment(payment);
-    }
-
+    
 }
