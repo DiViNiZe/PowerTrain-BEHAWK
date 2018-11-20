@@ -35,6 +35,7 @@ public class PaymentService {
     }
     
     public boolean confirmPayment(String paymentToken, long orderId){
+        boolean result = false;
         Order order = orderRepository.findOrderByOrderId(orderId);
         List<OrderDetail> detail = order.getOrderDetail();
         double money = 0;
@@ -48,11 +49,11 @@ public class PaymentService {
                                         .currency("THB")
                                         .card(paymentToken)
                             );
-            return true;
+            result = true;
         }
         catch (Exception e){
             e.printStackTrace();
         }
-        return false;
+        return result;
     }
 }
