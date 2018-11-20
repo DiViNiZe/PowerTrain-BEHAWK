@@ -6,6 +6,8 @@
 package com.behawk.powertrain.bean;
 
 
+import co.omise.ClientException;
+import com.behawk.powertrain.service.PaymentService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,5 +24,10 @@ public class paymentBean {
     
     @Value("${publickey}")
     private String PUBLIC_KEY;
+    
+    @Bean
+    public PaymentService getKey() throws ClientException{
+        return  new PaymentService(PUBLIC_KEY, SECRET_KEY);
+    }
     
 }

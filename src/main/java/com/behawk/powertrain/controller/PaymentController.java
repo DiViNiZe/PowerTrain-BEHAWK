@@ -22,9 +22,5 @@ public class PaymentController {
 
     @Autowired
     private OrderService orderService;
-
-    @Autowired 
-    PaymentService paymentService;
-
     
 }
