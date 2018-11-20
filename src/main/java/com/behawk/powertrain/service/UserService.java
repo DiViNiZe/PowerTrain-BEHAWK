@@ -34,6 +34,20 @@ public class UserService {
         return userRepository.getOne(id);
     }
 
+    public User longinUser(User user){
+        User targetUser = getUserByFbToken(user.getFbAccessToken());
+        if(targetUser == null){
+            targetUser = createUser(user);
+            return targetUser;
+        }else{
+            return targetUser;
+        }
+    }
+
+    public User getUserByFbToken(String token){
+        return userRepository.findByFbAccessToken(token);
+    }
+
     public User createUser(User user){
         Cart userCart = new Cart();
         user.setAddress(new Address());

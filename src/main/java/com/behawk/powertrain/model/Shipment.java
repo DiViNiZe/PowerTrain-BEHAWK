@@ -28,6 +28,20 @@ public class Shipment implements Serializable {
     public Shipment() {
     }
 
+    /**
+     * @return the shipmentTrackingId
+     */
+    public String getShipmentTrackingId() {
+        return shipmentTrackingId;
+    }
+
+    /**
+     * @param shipmentTrackingId the shipmentTrackingId to set
+     */
+    public void setShipmentTrackingId(String shipmentTrackingId) {
+        this.shipmentTrackingId = shipmentTrackingId;
+    }
+
     public long getShipmentid() {
         return shipmentid;
     }

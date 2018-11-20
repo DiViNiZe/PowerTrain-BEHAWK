@@ -10,13 +10,11 @@ import com.behawk.powertrain.model.OrderDetail;
 import com.behawk.powertrain.model.Payment;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 /**
  *
  * @author vuttichai
  */
-@Service
 public class PaymentService {
 
     @Autowired
@@ -27,16 +25,15 @@ public class PaymentService {
     private OrderRepository orderRepository;
     
     public PaymentService(String publicKey, String secretKey) throws ClientException {
-        client = new Client(publicKey, secretKey);
+        this.client = new Client(publicKey, secretKey);
     }
     
     public Payment updatePayment(Payment payment){
         return paymentRepository.save(payment);
     }
     
-    public boolean confirmPayment(String paymentToken, long orderId){
+    public boolean confirmPayment(String paymentToken, Order order){
         boolean result = false;
-        Order order = orderRepository.findOrderByOrderId(orderId);
         List<OrderDetail> detail = order.getOrderDetail();
         double money = 0;
         for(OrderDetail od : detail){

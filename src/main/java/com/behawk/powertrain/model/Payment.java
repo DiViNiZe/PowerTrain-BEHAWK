@@ -25,8 +25,24 @@ public class Payment implements Serializable {
 
     private String paymentType;
 
+    private String paymentToken;
+
     public long getPaymentId() {
         return paymentId;
+    }
+
+    /**
+     * @return the paymentToken
+     */
+    public String getPaymentToken() {
+        return paymentToken;
+    }
+
+    /**
+     * @param paymentToken the paymentToken to set
+     */
+    public void setPaymentToken(String paymentToken) {
+        this.paymentToken = paymentToken;
     }
 
     public void setPaymentId(long paymentId) {
