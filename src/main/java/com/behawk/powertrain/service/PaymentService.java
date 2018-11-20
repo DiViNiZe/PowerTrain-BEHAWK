@@ -10,7 +10,6 @@ import com.behawk.powertrain.model.OrderDetail;
 import com.behawk.powertrain.model.Payment;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 /**
  *

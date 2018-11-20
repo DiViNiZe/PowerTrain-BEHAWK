@@ -30,10 +30,10 @@ public class User extends SerializableSerializer {
 
     private String fbAccessToken;
 
-    @NotBlank
+    private String fbId;
+
     private String username;
 
-    @NotBlank
     private String password;
 
     @Transient
@@ -52,6 +52,20 @@ public class User extends SerializableSerializer {
     public User() {
     }
     
+    /**
+     * @return the fbId
+     */
+    public String getFbId() {
+        return fbId;
+    }
+
+    /**
+     * @param fbId the fbId to set
+     */
+    public void setFbId(String fbId) {
+        this.fbId = fbId;
+    }
+
     public long getUserId() {
         return userId;
     }

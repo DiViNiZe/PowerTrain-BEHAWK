@@ -22,7 +22,7 @@ public class UserController {
 
     @PostMapping(value="/user/login")
     public ResponseEntity<User> authenUser(@RequestBody User inputUser) { 
-        return null;
+        return new ResponseEntity<User>(userService.longinUser(inputUser),HttpStatus.OK);
     }
     
     @PostMapping(value="/user")

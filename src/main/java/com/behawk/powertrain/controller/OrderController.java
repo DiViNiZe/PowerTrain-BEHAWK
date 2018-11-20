@@ -60,4 +60,13 @@ public class OrderController {
         targetOrder.setStatus(status);
         return orderService.updateOrder(targetOrder);
     }
+
+    @PatchMapping("/order/confirm/{orderId}")
+    public Order confirmOrder(@PathVariable long orderId){
+        Order targetOrder = orderService.getOrderById(orderId);
+        if(targetOrder.getStatus() == "INCART"){
+            targetOrder.setStatus("CONFIRM");
+        }
+        return orderService.updateOrder(targetOrder);
+    }
 }
