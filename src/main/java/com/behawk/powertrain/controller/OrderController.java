@@ -38,8 +38,8 @@ public class OrderController {
     private UserService userService;
 
     @GetMapping("/order/address/{orderId}")
-    public Address getOrderAddress(@PathVariable long id){
-        Order targetOrder = orderService.getOrderById(id);
+    public Address getOrderAddress(@PathVariable long orderId){
+        Order targetOrder = orderService.getOrderById(orderId);
         User userOfTheOrder = targetOrder.getUser();
         Address orderAddress = userOfTheOrder.getAddress();
         if(orderAddress == null){
@@ -49,12 +49,8 @@ public class OrderController {
         }
     }
 
-    @PostMapping("/order/address/{orderId}")
-    public Address addAddressToOrder(@PathVariable long id ,@RequestBody Address address){
-        Order targetOrder = orderService.getOrderById(id);
-        User userOfTheOrder = targetOrder.getUser();
-        userOfTheOrder.setAddress(address);
-        userService.createUser(userOfTheOrder);
-        return address;
+    @PostMapping("/order/address")
+    public Address addAddressToOrder(@RequestBody Address address){
+        return addressService.saveAddress(address);
     }
 }

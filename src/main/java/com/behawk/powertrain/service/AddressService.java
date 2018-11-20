@@ -27,7 +27,7 @@ public class AddressService {
     @Autowired
     private AddressRepository addressRepository;
 
-    public Address setAddressById(Address newAddress){
+    public Address saveAddress(Address newAddress){
         return addressRepository.save(newAddress);
     }
 }
