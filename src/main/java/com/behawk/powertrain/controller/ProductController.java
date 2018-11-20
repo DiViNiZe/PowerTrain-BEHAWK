@@ -35,7 +35,7 @@ public class ProductController {
         return productService.findProductById(id);
     }
 
-    @GetMapping("/product/{campaign_name}")
+    @GetMapping("/product/campaign/{campaign_name}")
     public ResponseEntity<List<Product>> getProductByCampaignName(
         @RequestParam("campaign_name") String targetCampaignName,
         @RequestParam("sortBy") String sortType,
