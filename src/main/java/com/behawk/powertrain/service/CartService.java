@@ -56,8 +56,6 @@ public class CartService {
         orderDetail.setProduct(targetProduct);
         orderDetail.setQuantity(1);
         orderDetail.setTotalPrice(targetProduct.getPrice());
-        System.out.println("*************************");
-        System.out.print(targetProduct.getPrice());
         orderDetails.add(orderDetail);
         cartOrder.setOrderDetail(orderDetails);
         userCart.setOrder(cartOrder);
