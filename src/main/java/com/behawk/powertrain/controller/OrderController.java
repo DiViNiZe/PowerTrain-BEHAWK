@@ -15,9 +15,11 @@ import com.behawk.powertrain.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -34,8 +36,6 @@ public class OrderController {
     @Autowired
     private AddressService addressService;
     
-    @Autowired
-    private UserService userService;
 
     @GetMapping("/order/address/{orderId}")
     public Address getOrderAddress(@PathVariable long orderId){
@@ -52,5 +52,12 @@ public class OrderController {
     @PostMapping("/order/address")
     public Address addAddressToOrder(@RequestBody Address address){
         return addressService.saveAddress(address);
+    }
+
+    @PatchMapping("/order/status/{orderId}")
+    public Order updateOrderStatus(@PathVariable long orderId,@RequestParam("status") String status){
+        Order targetOrder = orderService.getOrderById(orderId);
+        targetOrder.setStatus(status);
+        return orderService.updateOrder(targetOrder);
     }
 }

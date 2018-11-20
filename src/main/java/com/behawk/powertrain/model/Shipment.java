@@ -23,6 +23,8 @@ public class Shipment implements Serializable {
 
     private String shipmentCost;
 
+    private String shipmentTrackingId;
+
     public Shipment() {
     }
 

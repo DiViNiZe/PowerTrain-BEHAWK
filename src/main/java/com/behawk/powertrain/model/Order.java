@@ -48,6 +48,7 @@ public class Order implements Serializable {
     @Temporal(TemporalType.TIME)
     private Date dateShipped;
 
+    //INPROGRESS,CONFIRMED,SHIPPING,DELIVERED
     private String status;
     
     @ManyToOne(optional=false,targetEntity=User.class,cascade=CascadeType.ALL)
