@@ -38,12 +38,11 @@ public class CartService {
         return cartRepository.findByUserUserId(id);
     }
 
-    @Transactional
     public Cart addProductById(long productId,long userId){
+        System.out.println("***********productId*************");
+        System.out.println(productId);
         Product targetProduct = productService.findProductById(productId);
         Cart userCart = getCartByUserId(userId);
-        System.out.println("************************");
-        System.out.println(userCart.getOrder().toString());
         Order cartOrder = userCart.getOrder();
         cartOrder.setDateCreated(new Date());
         cartOrder.setStatus("INCART");
