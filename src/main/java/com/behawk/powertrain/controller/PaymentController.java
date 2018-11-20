@@ -21,6 +21,8 @@ public class PaymentController {
     @Autowired
     private OrderService orderService;
 
+    @Autowired PaymentService paymentService;
+
 
     @GetMapping("/payment/{orderId}")
     public Payment getPaymentByOrderId(@PathVariable long orderId){
@@ -33,9 +35,8 @@ public class PaymentController {
         }
     }
 
-    @PostMapping("/payment/{orderId}")
-    public Payment addPayment(@PathVariable long orderId,@RequestBody Payment payment){
-        Order targetOrder = orderService.getOrderById(orderId);
+    @PostMapping("/payment")
+    public Payment addPayment(@RequestBody Payment payment){
         targetOrder.setPayment(payment);
         return orderService.updateOrder(targetOrder).getPayment();
     }
