@@ -21,7 +21,7 @@ public class Shipment implements Serializable {
 
     private String shipmentType;
 
-    private String shipmentCost;
+    private Double shipmentCost;
 
     private String shipmentTrackingId;
 
@@ -58,11 +58,11 @@ public class Shipment implements Serializable {
         this.shipmentType = shipmentType;
     }
 
-    public String getShipmentCost() {
+    public Double getShipmentCost() {
         return shipmentCost;
     }
 
-    public void setShipmentCost(String shipmentCost) {
+    public void setShipmentCost(Double shipmentCost) {
         this.shipmentCost = shipmentCost;
     }
 
