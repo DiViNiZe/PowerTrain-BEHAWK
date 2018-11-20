@@ -20,6 +20,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -55,26 +56,32 @@ public class Order implements Serializable {
     
     @OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL,targetEntity=OrderDetail.class)
     private List<OrderDetail> orderDetail;
+
+    @OneToOne(optional=false,targetEntity=Payment.class,cascade=CascadeType.ALL)
+    @JoinColumn(name="paymentId")
+    private Payment payment;
+
+    
     
     public long getOrderId() {
         return orderId;
     }
     
-
+    
     /**
      * @return the status
      */
     public String getStatus() {
         return status;
     }
-
+    
     /**
      * @param status the status to set
      */
     public void setStatus(String status) {
         this.status = status;
     }
-
+    
     public void setOrderId(long orderId) {
         this.orderId = orderId;
     }
@@ -90,27 +97,35 @@ public class Order implements Serializable {
     public Date getDateShipped() {
         return this.dateShipped;
     }
-
+    
     public void setDateShipped(Date dateShipped) {
         this.dateShipped = dateShipped;
     }
-
+    
     public User getUser() {
         return this.user;
     }
-
+    
     public void setUser(User user) {
         this.user = user;
     }
-
+    
     public List<OrderDetail> getOrderDetail() {
         return this.orderDetail;
     }
-
+    
     public void setOrderDetail(List<OrderDetail> orderDetail) {
         this.orderDetail = orderDetail;
     }
-
+    
+    public Payment getPayment() {
+        return this.payment;
+    }
+    
+    public void setPayment(Payment payment) {
+        this.payment = payment;
+    }
+    
     @Override
     public String toString() {
         return "Order{" + "orderId=" + orderId + ", dateCreated=" + dateCreated + ", dateShipped=" + dateShipped + '}';
