@@ -38,14 +38,16 @@ public class UserService {
         User targetUser = getUserByFbToken(user.getFbAccessToken());
         if(targetUser == null){
             targetUser = createUser(user);
-            return targetUser;
-        }else{
-            return targetUser;
         }
+        return targetUser;
     }
 
     public User getUserByFbToken(String token){
         return userRepository.findByFbAccessToken(token);
+    }
+
+    public User getUserByFbId(){
+        return null;
     }
 
     public User createUser(User user){
