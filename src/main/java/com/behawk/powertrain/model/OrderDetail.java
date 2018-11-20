@@ -8,6 +8,8 @@ package com.behawk.powertrain.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.org.apache.xml.internal.serializer.Serializer;
 import java.io.Serializable;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -35,7 +37,7 @@ public class OrderDetail implements Serializable {
     @Transient
     private double totalPrice;
 
-    @ManyToOne(fetch=FetchType.EAGER,targetEntity=Product.class)
+    @ManyToOne(fetch=FetchType.EAGER,targetEntity=Product.class,cascade=CascadeType.ALL)
     @JoinColumn(name="productId")
     private Product product;
 

@@ -48,15 +48,15 @@ public class Order implements Serializable {
     private Date dateShipped;
 
     
-    @ManyToOne(optional=true,targetEntity=Status.class)
+    @ManyToOne(optional=true,targetEntity=Status.class,cascade=CascadeType.ALL)
     @JoinColumn(name="statusId")
     private Status status;
     
-    @ManyToOne(optional=false,targetEntity=User.class)
+    @ManyToOne(optional=false,targetEntity=User.class,cascade=CascadeType.ALL)
     @JoinColumn(name="userId")
     private User user;
     
-    @OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.REMOVE,targetEntity=OrderDetail.class)
+    @OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL,targetEntity=OrderDetail.class)
     private List<OrderDetail> orderDetail;
     
     public long getOrderId() {
@@ -106,7 +106,7 @@ public class Order implements Serializable {
     public void setOrderDetail(List<OrderDetail> orderDetail) {
         this.orderDetail = orderDetail;
     }
-    
+
     @Override
     public String toString() {
         return "Order{" + "orderId=" + orderId + ", dateCreated=" + dateCreated + ", dateShipped=" + dateShipped + '}';

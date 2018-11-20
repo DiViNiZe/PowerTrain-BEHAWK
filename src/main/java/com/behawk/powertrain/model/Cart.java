@@ -23,7 +23,7 @@ public class Cart extends SerializableSerializer{
     @GeneratedValue(strategy=GenerationType.AUTO)
     private long id;
 
-    @OneToOne(fetch=FetchType.EAGER)
+    @OneToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
     private Order order;
 
     @OneToOne(fetch=FetchType.EAGER)

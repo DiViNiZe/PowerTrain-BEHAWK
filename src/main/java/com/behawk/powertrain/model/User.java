@@ -1,5 +1,6 @@
 package com.behawk.powertrain.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -8,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.databind.ser.std.SerializableSerializer;
@@ -26,14 +28,16 @@ public class User extends SerializableSerializer {
 
     private String lastName;
 
-    @UniqueElements
+    private String fbAccessToken;
+
     @NotBlank
     private String username;
 
     @NotBlank
     private String password;
 
-    @OneToOne(fetch=FetchType.EAGER,targetEntity=Cart.class)
+    @Transient
+    @OneToOne(fetch=FetchType.EAGER,targetEntity=Cart.class,cascade=CascadeType.ALL)
     @JoinColumn(name="id")
     private Cart cart;
 
@@ -106,6 +110,14 @@ public class User extends SerializableSerializer {
 
     public void setCart(Cart cart) {
         this.cart = cart;
+    }
+
+    public String getFbAccessToken() {
+        return this.fbAccessToken;
+    }
+
+    public void setFbAccessToken(String fbAccessToken) {
+        this.fbAccessToken = fbAccessToken;
     }
 
     @Override
