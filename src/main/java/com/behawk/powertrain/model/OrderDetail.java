@@ -67,7 +67,7 @@ public class OrderDetail implements Serializable {
     }
 
     public double getTotalPrice() {
-        return product.getPrice()*this.quantity;
+        return this.totalPrice;
     }
 
     public void setTotalPrice(double totalPrice) {
