@@ -8,7 +8,9 @@ package com.behawk.powertrain.controller;
 import com.behawk.powertrain.model.Address;
 import com.behawk.powertrain.model.Order;
 import com.behawk.powertrain.model.User;
+import com.behawk.powertrain.service.AddressService;
 import com.behawk.powertrain.service.OrderService;
+import com.behawk.powertrain.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -31,7 +33,10 @@ public class OrderController {
     private OrderService orderService;
 
     @Autowired
-    private Address address;
+    private AddressService addressService;
+    
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/order/address/{orderId}")
     public Address getOrderAddress(@PathVariable long id){
@@ -47,6 +52,10 @@ public class OrderController {
 
     @PostMapping("/order/address/{orderId}")
     public Address addAddressToOrder(@PathVariable long id ,@RequestBody Address address){
-        return null;
+        Order targetOrder = orderService.getOrderById(id);
+        User userOfTheOrder = targetOrder.getUser();
+        userOfTheOrder.setAddress(address);
+        userService.createUser(userOfTheOrder);
+        return address;
     }
 }
