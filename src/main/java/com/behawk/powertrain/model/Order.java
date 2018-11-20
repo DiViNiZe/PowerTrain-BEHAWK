@@ -47,10 +47,7 @@ public class Order implements Serializable {
     @Temporal(TemporalType.TIME)
     private Date dateShipped;
 
-    
-    @ManyToOne(optional=true,targetEntity=Status.class,cascade=CascadeType.ALL)
-    @JoinColumn(name="statusId")
-    private Status status;
+    private String status;
     
     @ManyToOne(optional=false,targetEntity=User.class,cascade=CascadeType.ALL)
     @JoinColumn(name="userId")
@@ -63,6 +60,21 @@ public class Order implements Serializable {
         return orderId;
     }
     
+
+    /**
+     * @return the status
+     */
+    public String getStatus() {
+        return status;
+    }
+
+    /**
+     * @param status the status to set
+     */
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public void setOrderId(long orderId) {
         this.orderId = orderId;
     }
@@ -81,14 +93,6 @@ public class Order implements Serializable {
 
     public void setDateShipped(Date dateShipped) {
         this.dateShipped = dateShipped;
-    }
-
-    public Status getStatus() {
-        return this.status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
     }
 
     public User getUser() {
