@@ -7,6 +7,8 @@ import java.util.List;
 import com.behawk.powertrain.model.Order;
 import com.behawk.powertrain.model.Payment;
 import com.behawk.powertrain.service.OrderService;
+import com.behawk.powertrain.service.PaymentService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +23,9 @@ public class PaymentController {
     @Autowired
     private OrderService orderService;
 
+    @Autowired 
+    PaymentService paymentService;
+
 
     @GetMapping("/payment/{orderId}")
     public Payment getPaymentByOrderId(@PathVariable long orderId){
@@ -33,11 +38,9 @@ public class PaymentController {
         }
     }
 
-    @PostMapping("/payment/{orderId}")
-    public Payment addPayment(@PathVariable long orderId,@RequestBody Payment payment){
-        Order targetOrder = orderService.getOrderById(orderId);
-        targetOrder.setPayment(payment);
-        return orderService.updateOrder(targetOrder).getPayment();
+    @PostMapping("/payment")
+    public Payment addPayment(@RequestBody Payment payment){
+        return paymentService.updatePayment(payment);
     }
 
 }
