@@ -26,7 +26,7 @@ public class PaymentBean {
     private String PUBLIC_KEY;
     
     @Bean
-    public PaymentService getKey() throws ClientException{
+    public PaymentService paymentService() throws ClientException{
         return  new PaymentService(PUBLIC_KEY, SECRET_KEY);
     }
     
