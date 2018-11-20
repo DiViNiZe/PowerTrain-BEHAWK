@@ -2,9 +2,16 @@ package com.behawk.powertrain.service;
 
 import co.omise.Client;
 import co.omise.ClientException;
+<<<<<<< HEAD
+=======
+import co.omise.models.Charge;
+>>>>>>> master
 import com.behawk.powertrain.Repository.OrderRepository;
 import com.behawk.powertrain.Repository.PaymentRepository;
+import com.behawk.powertrain.model.Order;
+import com.behawk.powertrain.model.OrderDetail;
 import com.behawk.powertrain.model.Payment;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +26,11 @@ public class PaymentService {
     private Client client;
     
     @Autowired
+<<<<<<< HEAD
     private OrderRepository order;
+=======
+    private OrderRepository orderRepository;
+>>>>>>> master
     
     public PaymentService(String publicKey, String secretKey) throws ClientException {
         this.client = new Client(publicKey, secretKey);
@@ -30,9 +41,32 @@ public class PaymentService {
     }
     
     public boolean confirmPayment(String paymentToken, long orderId){
+<<<<<<< HEAD
         // order.;
         return false;
     }
     
     
+=======
+        Order order = orderRepository.findOrderByOrderId(orderId);
+        List<OrderDetail> detail = order.getOrderDetail();
+        double money = 0;
+        for(OrderDetail od : detail){
+            money+=od.getTotalPrice();
+        }
+        try{
+            Charge charge = client.charges().create(
+                                new Charge.Create()
+                                        .amount((long) money)
+                                        .currency("THB")
+                                        .card(paymentToken)
+                            );
+            return true;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+>>>>>>> master
 }

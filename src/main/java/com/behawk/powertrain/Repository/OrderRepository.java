@@ -6,6 +6,7 @@
 package com.behawk.powertrain.Repository;
 
 import com.behawk.powertrain.model.Order;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -14,5 +15,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface OrderRepository extends JpaRepository<Order, Long> {
     
+<<<<<<< HEAD
     //public int
+=======
+    public Order findOrderByOrderId(long Id);
+>>>>>>> master
 }
