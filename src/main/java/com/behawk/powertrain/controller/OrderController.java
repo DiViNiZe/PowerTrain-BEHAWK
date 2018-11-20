@@ -12,8 +12,10 @@ import com.behawk.powertrain.service.OrderService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,10 +33,20 @@ public class OrderController {
     @Autowired
     private Address address;
 
-    @PatchMapping("/order/address/{orderId}")
+    @GetMapping("/order/address/{orderId}")
     public Address getOrderAddress(@PathVariable long id){
         Order targetOrder = orderService.getOrderById(id);
         User userOfTheOrder = targetOrder.getUser();
+        Address orderAddress = userOfTheOrder.getAddress();
+        if(orderAddress == null){
+            return new Address();
+        }else{
+            return orderAddress;
+        }
+    }
+
+    @PostMapping("/order/address/{orderId}")
+    public Address addAddressToOrder(@PathVariable long id ,@RequestBody Address address){
         return null;
     }
 }

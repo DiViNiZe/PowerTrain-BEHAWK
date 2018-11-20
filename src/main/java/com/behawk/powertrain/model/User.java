@@ -44,7 +44,6 @@ public class User extends SerializableSerializer {
     @OneToOne(fetch=FetchType.EAGER,targetEntity=Address.class,cascade=CascadeType.ALL)
     @JoinColumn(name="addressId")
     private Address address;
-
     
     private String email;
     
@@ -132,7 +131,7 @@ public class User extends SerializableSerializer {
     public void setAddress(Address address) {
         this.address = address;
     }
-    
+
     @Override
     public String toString() {
         return "User{" + "userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName + ", username=" + username + ", password=" + password + ", email=" + email + ", phoneNumber=" + phoneNumber + '}';
