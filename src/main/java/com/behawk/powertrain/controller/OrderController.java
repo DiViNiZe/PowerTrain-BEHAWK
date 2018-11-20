@@ -5,8 +5,10 @@
  */
 package com.behawk.powertrain.controller;
 
+import com.behawk.powertrain.Repository.OrderRepository;
 import com.behawk.powertrain.model.Address;
 import com.behawk.powertrain.model.Order;
+import com.behawk.powertrain.model.Payment;
 import com.behawk.powertrain.model.User;
 import com.behawk.powertrain.service.AddressService;
 import com.behawk.powertrain.service.OrderService;
@@ -55,6 +57,18 @@ public class OrderController {
     @PostMapping("/order/address")
     public Address addAddressToOrder(@RequestBody Address address){
         return addressService.saveAddress(address);
+    }
+
+    @GetMapping("/order/payment/{orderId}")
+    public Payment getPaymentByOrder(@PathVariable long orderId){
+        return orderService.getOrderById(orderId).getPayment();
+    }
+
+    @PatchMapping("order/payment/{orderId}")
+    public Payment updatePayment(@PathVariable long orderId,@RequestBody Payment payment){
+        Order targetOrder = orderService.getOrderById(orderId);
+        targetOrder.setPayment(payment);
+        return orderService.updateOrder(targetOrder).getPayment();
     }
 
     @PatchMapping("/order/status/{orderId}")
