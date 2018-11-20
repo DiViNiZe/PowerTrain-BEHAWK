@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
  *
  * @author benz
  */
+@CrossOrigin(origins = "*")
 @RestController
 public class CartController {
 

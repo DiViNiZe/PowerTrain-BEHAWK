@@ -8,6 +8,7 @@ import com.behawk.powertrain.model.Product;
 import com.behawk.powertrain.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,14 +17,14 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
+@CrossOrigin(origins = "*")
 @RestController
 public class ProductController {
     
     @Autowired
     private ProductService productService;
     
-    @GetMapping("/product")
+    @GetMapping("/products")
     public List<Product> getProductbyProduct(@RequestParam(required = false) String product){
         List<Product> productList = productService.findAllProduct(); 
         return productService.findAllProduct();

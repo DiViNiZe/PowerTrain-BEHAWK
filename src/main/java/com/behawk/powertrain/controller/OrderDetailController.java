@@ -9,6 +9,7 @@ import com.behawk.powertrain.model.OrderDetail;
 import com.behawk.powertrain.model.Product;
 import com.behawk.powertrain.service.OrderDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author Supakorn
  */
+@CrossOrigin(origins = "*")
 @RestController
 
 public class OrderDetailController {
