@@ -35,7 +35,7 @@ public class UserService {
     }
 
     public User longinUser(User user){
-        User targetUser = getUserByFbToken(user.getFbAccessToken());
+        User targetUser = getUserByFbId(user.getFbId());
         if(targetUser == null){
             targetUser = createUser(user);
         }
@@ -46,8 +46,8 @@ public class UserService {
         return userRepository.findByFbAccessToken(token);
     }
 
-    public User getUserByFbId(){
-        return null;
+    public User getUserByFbId(String fbId){
+        return userRepository.findByFbId(fbId);
     }
 
     public User createUser(User user){
