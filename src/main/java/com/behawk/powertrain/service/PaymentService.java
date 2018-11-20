@@ -2,7 +2,10 @@ package com.behawk.powertrain.service;
 
 import co.omise.Client;
 import co.omise.ClientException;
+<<<<<<< HEAD
+=======
 import co.omise.models.Charge;
+>>>>>>> master
 import com.behawk.powertrain.Repository.OrderRepository;
 import com.behawk.powertrain.Repository.PaymentRepository;
 import com.behawk.powertrain.model.Order;
@@ -16,7 +19,6 @@ import org.springframework.stereotype.Service;
  *
  * @author vuttichai
  */
-@Service
 public class PaymentService {
 
     @Autowired
@@ -24,10 +26,14 @@ public class PaymentService {
     private Client client;
     
     @Autowired
+<<<<<<< HEAD
+    private OrderRepository order;
+=======
     private OrderRepository orderRepository;
+>>>>>>> master
     
     public PaymentService(String publicKey, String secretKey) throws ClientException {
-        client = new Client(publicKey, secretKey);
+        this.client = new Client(publicKey, secretKey);
     }
     
     public Payment updatePayment(Payment payment){
@@ -35,6 +41,13 @@ public class PaymentService {
     }
     
     public boolean confirmPayment(String paymentToken, long orderId){
+<<<<<<< HEAD
+        // order.;
+        return false;
+    }
+    
+    
+=======
         Order order = orderRepository.findOrderByOrderId(orderId);
         List<OrderDetail> detail = order.getOrderDetail();
         double money = 0;
@@ -55,4 +68,5 @@ public class PaymentService {
         }
         return false;
     }
+>>>>>>> master
 }
