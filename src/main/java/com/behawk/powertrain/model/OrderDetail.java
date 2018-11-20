@@ -34,6 +34,7 @@ public class OrderDetail implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long orderDetailId;
     private int quantity;
+
     @Transient
     private double totalPrice;
 
@@ -66,7 +67,7 @@ public class OrderDetail implements Serializable {
     }
 
     public double getTotalPrice() {
-        return totalPrice;
+        return product.getPrice()*this.quantity;
     }
 
     public void setTotalPrice(double totalPrice) {

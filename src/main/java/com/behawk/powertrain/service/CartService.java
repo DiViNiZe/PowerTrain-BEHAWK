@@ -39,8 +39,6 @@ public class CartService {
     }
 
     public Cart addProductById(long productId,long userId){
-        System.out.println("***********productId*************");
-        System.out.println(productId);
         Product targetProduct = productService.findProductById(productId);
         Cart userCart = getCartByUserId(userId);
         Order cartOrder = userCart.getOrder();
@@ -57,9 +55,11 @@ public class CartService {
             orderDetails = new ArrayList<OrderDetail>();
         }
         OrderDetail orderDetail = new OrderDetail();
+        orderDetail.setTotalPrice(100.00);
+        System.out.println("************OrderPrice***************");
+        System.out.println(orderDetail.getTotalPrice());
         orderDetail.setProduct(targetProduct);
         orderDetail.setQuantity(1);
-        orderDetail.setTotalPrice(targetProduct.getPrice());
         orderDetails.add(orderDetail);
         cartOrder.setOrderDetail(orderDetails);
         userCart.setOrder(cartOrder);
