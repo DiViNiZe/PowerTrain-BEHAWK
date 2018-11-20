@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Configuration;
  * @author Sinn
  */
 @Configuration
-public class paymentBean {
+public class PaymentBean {
     
     @Value("${secretkey}")
     private String SECRET_KEY;

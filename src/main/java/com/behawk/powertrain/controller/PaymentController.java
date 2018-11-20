@@ -23,4 +23,12 @@ public class PaymentController {
     @Autowired
     private OrderService orderService;
     
+    @Autowired
+    PaymentService paymentService;
+    
+    @PostMapping("/payment")
+    public boolean payment(@RequestBody String paymentToken){
+        return paymentService.confirmPayment();
+    }
+    
 }

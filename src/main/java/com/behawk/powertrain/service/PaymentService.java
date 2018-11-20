@@ -20,9 +20,13 @@ public class PaymentService {
     public PaymentService(String publicKey, String secretKey) throws ClientException {
         client = new Client(publicKey, secretKey);
     }
-
+    
     public Payment updatePayment(Payment payment){
         return paymentRepository.save(payment);
+    }
+    
+    public boolean confirmPayment(){
+        return false;
     }
     
 }
