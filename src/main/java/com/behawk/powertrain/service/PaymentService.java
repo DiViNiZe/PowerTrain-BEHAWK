@@ -32,8 +32,7 @@ public class PaymentService {
         return paymentRepository.save(payment);
     }
     
-    public boolean confirmPayment(String paymentToken, long orderId){
-        Order order = orderRepository.findOrderByOrderId(orderId);
+    public boolean confirmPayment(String paymentToken, Order order){
         List<OrderDetail> detail = order.getOrderDetail();
         double money = 0;
         for(OrderDetail od : detail){

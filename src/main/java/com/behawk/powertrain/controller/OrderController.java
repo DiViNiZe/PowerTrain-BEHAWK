@@ -10,6 +10,7 @@ import com.behawk.powertrain.model.Order;
 import com.behawk.powertrain.model.User;
 import com.behawk.powertrain.service.AddressService;
 import com.behawk.powertrain.service.OrderService;
+import com.behawk.powertrain.service.PaymentService;
 import com.behawk.powertrain.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,8 @@ public class OrderController {
     @Autowired
     private AddressService addressService;
     
+    @Autowired
+    private PaymentService paymentService;
 
     @GetMapping("/order/address/{orderId}")
     public Address getOrderAddress(@PathVariable long orderId){
@@ -66,6 +69,8 @@ public class OrderController {
         Order targetOrder = orderService.getOrderById(orderId);
         if(targetOrder.getStatus() == "INCART"){
             targetOrder.setStatus("CONFIRM");
+            String token = targetOrder.getPayment().getPaymentToken();
+            paymentService.confirmPayment(token, targetOrder);
         }
         return orderService.updateOrder(targetOrder);
     }
