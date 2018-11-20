@@ -58,10 +58,13 @@ public class Order implements Serializable {
     @OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL,targetEntity=OrderDetail.class)
     private List<OrderDetail> orderDetail;
 
-    @OneToOne(optional=false,targetEntity=Payment.class,cascade=CascadeType.ALL)
+    @OneToOne(optional=true,targetEntity=Payment.class,cascade=CascadeType.ALL)
     @JoinColumn(name="paymentId")
     private Payment payment;
 
+    @OneToOne(optional=true,targetEntity=Shipment.class,cascade=CascadeType.ALL)
+    @JoinColumn(name="shipmentid")
+    private Shipment shipment;
     
     
     public long getOrderId() {
