@@ -35,7 +35,10 @@ public class CartService {
     private ProductService productService;
 
     public Cart getCartByUserId(long id){
-        return cartRepository.findByUserUserId(id);
+        Cart targetCart = cartRepository.findByUserUserId(id);
+        System.out.println("**************************");
+        System.out.println(targetCart.toString());
+        return targetCart;
     }
 
     public Cart addProductById(long productId,long userId){
@@ -64,5 +67,9 @@ public class CartService {
         cartOrder.setOrderDetail(orderDetails);
         userCart.setOrder(cartOrder);
         return cartRepository.save(userCart);
+    }
+
+    public Cart createCart(Cart cart){
+        return cartRepository.save(cart);
     }
 }

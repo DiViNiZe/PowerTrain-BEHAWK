@@ -25,6 +25,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 /**
  *
@@ -51,6 +53,7 @@ public class Order implements Serializable {
     //INPROGRESS,CONFIRMED,SHIPPING,DELIVERED
     private String status;
     
+    @JsonIgnore
     @ManyToOne(optional=false,targetEntity=User.class,cascade=CascadeType.ALL)
     @JoinColumn(name="userId")
     private User user;

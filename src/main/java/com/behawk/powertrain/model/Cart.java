@@ -9,8 +9,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.ser.std.SerializableSerializer;
 
 import org.hibernate.validator.constraints.UniqueElements;
@@ -25,7 +27,8 @@ public class Cart extends SerializableSerializer{
 
     @OneToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
     private Order order;
-
+    
+    @JsonIgnore    
     @OneToOne(fetch=FetchType.EAGER)
     private User user;
 

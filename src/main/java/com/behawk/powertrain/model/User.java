@@ -12,6 +12,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.ser.std.SerializableSerializer;
 
 import org.hibernate.validator.constraints.UniqueElements;
@@ -21,7 +22,7 @@ import org.hibernate.validator.constraints.UniqueElements;
 public class User extends SerializableSerializer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long userId;
 
     private String firstName;
@@ -36,7 +37,6 @@ public class User extends SerializableSerializer {
 
     private String password;
 
-    @Transient
     @OneToOne(fetch=FetchType.EAGER,targetEntity=Cart.class,cascade=CascadeType.ALL)
     @JoinColumn(name="id")
     private Cart cart;

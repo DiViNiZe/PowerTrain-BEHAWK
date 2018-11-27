@@ -28,7 +28,7 @@ public class UserService {
     private UserRepository userRepository;
     
     @Autowired
-    private CartRepository cartRepository;
+    private CartService cartService;
 
     public User getUserById(long id) {
         return userRepository.getOne(id);
@@ -51,15 +51,16 @@ public class UserService {
     }
 
     public User createUser(User user){
-        Cart userCart = new Cart();
         user.setAddress(new Address());
-        user = userRepository.save(user);
-        userCart.setUser(user);
+        Cart newCart = new Cart();
         Order userOrder = new Order();
-        userOrder.setPayment(new Payment());
         userOrder.setUser(user);
-        userCart.setOrder(userOrder);
-        cartRepository.save(userCart);
-        return user;
+        userOrder.setPayment(new Payment());
+        newCart.setOrder(userOrder);
+        newCart.setUser(user);
+        user.setCart(newCart);
+        System.out.println("**********USER***********");
+        System.out.println(user.toString());
+        return userRepository.save(user);
     }
 }
