@@ -5,6 +5,7 @@
  */
 package com.behawk.powertrain.service;
 
+import com.behawk.powertrain.Repository.AddressRepository;
 import javax.transaction.Transactional;
 
 import com.behawk.powertrain.Repository.CartRepository;
@@ -24,9 +25,13 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UserService {
+
     @Autowired
     private UserRepository userRepository;
-    
+
+    @Autowired
+    private AddressRepository addressRepository;
+
     @Autowired
     private CartService cartService;
 
@@ -34,24 +39,30 @@ public class UserService {
         return userRepository.getOne(id);
     }
 
-    public User longinUser(User user){
+    public User longinUser(User user) {
         User targetUser = getUserByFbId(user.getFbId());
-        if(targetUser == null){
+        if (targetUser == null) {
             targetUser = createUser(user);
         }
         return targetUser;
     }
 
-    public User getUserByFbToken(String token){
+    public User getUserByFbToken(String token) {
         return userRepository.findByFbAccessToken(token);
     }
 
-    public User getUserByFbId(String fbId){
+    public User getUserByFbId(String fbId) {
         return userRepository.findByFbId(fbId);
     }
 
-    public User createUser(User user){
-        user.setAddress(new Address());
+    public User createUser(User user) {
+        if (user.getAddress() != null) {
+            System.out.println("got value");
+            System.out.println(user.getAddress());
+            addressRepository.save(user.getAddress());
+        } else {
+            user.setAddress(new Address());
+        }
         Cart newCart = new Cart();
         Order userOrder = new Order();
         userOrder.setUser(user);

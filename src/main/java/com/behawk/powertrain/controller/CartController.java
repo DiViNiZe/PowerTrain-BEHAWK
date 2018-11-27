@@ -30,6 +30,8 @@ public class CartController {
     public Cart addToCartByUserId(
         @PathVariable long userId,
         @RequestParam("product_id") long productId){
+        System.out.println("userid: "+userId);
+        System.out.println("product: "+productId);
             return cartService.addProductById(productId, userId);
     }
 }
