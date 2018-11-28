@@ -1,0 +1,506 @@
+{
+	"info": {
+		"_postman_id": "ebcd657e-c50f-492e-beba-f52be294e228",
+		"name": "BehawkPowerTrain",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "newProduct",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f722f043-c6d9-4bff-8042-6b85cf933bef",
+						"exec": [
+							"pm.test(\"response is ok\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Data should be Dell XPS 13\", function () { \r",
+							"     var data = pm.response.json();\r",
+							"     pm.expect(data.productName).to.eql('Dell XPS 13');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"productName\":\"Dell XPS 13\",\n\t\"description\":\"The ultimate lnwza nootbook better than peer's mac book\",\n\t\"image\":\"https://i.ytimg.com/vi/4HnKi_s37-I/maxresdefault.jpg\",\n\t\"price\":\"59000\",\n\t\"quatity\":\"1\"\n}"
+				},
+				"url": {
+					"raw": "https://behawk-backend-service.mybluemix.net/product",
+					"protocol": "https",
+					"host": [
+						"behawk-backend-service",
+						"mybluemix",
+						"net"
+					],
+					"path": [
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ADDSonTOUSER",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9b5d5c1e-3ad6-4fff-8201-90cf85cf4b46",
+						"exec": [
+							"pm.test(\"response is ok\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Inserted user sholud equal to son\", function () { \r",
+							"     var data = pm.response.json();\r",
+							"     pm.expect(data.firstName).to.eql('SON');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userId\":0,\n\t\"firstName\":\"SON\",\n\t\"lastName\":\"lnwZa\",\n\t\"username\":\"baba\",\n\t\"fbId\":\"123456789\",\n\t\"fbAccessToken\":\"THISISAFACEBOOKTOKENNAJA\",\n\t\"password\":\"HASHHASHHSASH\",\n\t\"email\":\"lnwZa@mail.kmutt.ac.th\",\n\t\"phoneNumber\":\"0898888888\"\n}"
+				},
+				"url": {
+					"raw": "https://behawk-backend-service.mybluemix.net/user",
+					"protocol": "https",
+					"host": [
+						"behawk-backend-service",
+						"mybluemix",
+						"net"
+					],
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddItemToCart",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c4811431-4d08-498a-967f-bc2a7b3f978a",
+						"exec": [
+							"pm.test(\"response is ok\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Product id should be 5 like the request\", function () { \r",
+							"     var data = pm.response.json();\r",
+							"     pm.expect(data.order.\r",
+							"                orderDetail[0].\r",
+							"                product.\r",
+							"                productId\r",
+							"               ).to.eql(5);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Cart status shold be in cart\", function () { \r",
+							"     var data = pm.response.json();\r",
+							"     pm.expect(data.order.status).to.eql('INCART');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\":\"SON\",\n\t\"lastName\":\"lnwZa\",\n\t\"username\":\"baba\",\n\t\"fbAccessToken\":\"THISISAFACEBOOKTOKENNAJA\",\n\t\"password\":\"HASHHASHHSASH\",\n\t\"email\":\"lnwZa@mail.kmutt.ac.th\",\n\t\"phoneNumber\":\"0898888888\"\n}"
+				},
+				"url": {
+					"raw": "https://behawk-backend-service.mybluemix.net/cart/2?product_id=5",
+					"protocol": "https",
+					"host": [
+						"behawk-backend-service",
+						"mybluemix",
+						"net"
+					],
+					"path": [
+						"cart",
+						"2"
+					],
+					"query": [
+						{
+							"key": "product_id",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getUserCart",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "27db966f-4b2d-4233-8484-f7cefb7e7b73",
+						"exec": [
+							"pm.test(\"response is ok\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Cart of user 2 should be Stitch Sketchbook\", function () { \r",
+							"     var data = pm.response.json();\r",
+							"     pm.expect(data.order.\r",
+							"                orderDetail[0].\r",
+							"                product.\r",
+							"                productName\r",
+							"               ).to.eql('Stitch Sketchbook');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://behawk-backend-service.mybluemix.net/cart/2",
+					"protocol": "https",
+					"host": [
+						"behawk-backend-service",
+						"mybluemix",
+						"net"
+					],
+					"path": [
+						"cart",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAddress",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d7adb0e6-d700-4f4a-a1d5-83b54a87c845",
+						"exec": [
+							"pm.test(\"response is ok\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Cart of user 2 should be Stitch Sketchbook\", function () { \r",
+							"     var data = pm.response.json();\r",
+							"     pm.expect(data.addressId).to.eql(1);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://behawk-backend-service.mybluemix.net/order/address/1",
+					"protocol": "https",
+					"host": [
+						"behawk-backend-service",
+						"mybluemix",
+						"net"
+					],
+					"path": [
+						"order",
+						"address",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SetAddress",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a758237b-a1f3-4440-96cb-bcc732c68ffe",
+						"exec": [
+							"pm.test(\"response is ok\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Address counrty should be thailand\", function () { \r",
+							"     var data = pm.response.json();\r",
+							"     pm.expect(data.country).to.eql('Thailand');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"addressId\": 2,\n    \"country\": \"Thailand\",\n    \"city\": \"Bangkok\",\n    \"addressDetail\": \"201/31 tipnakorn phracha-u-tid\",\n    \"zipcode\": 10150\n}"
+				},
+				"url": {
+					"raw": "https://behawk-backend-service.mybluemix.net/order/address",
+					"protocol": "https",
+					"host": [
+						"behawk-backend-service",
+						"mybluemix",
+						"net"
+					],
+					"path": [
+						"order",
+						"address"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "setPayment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e80c8a23-f3aa-4e75-beb4-91dbc3799c5a",
+						"exec": [
+							"pm.test(\"response is ok\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Paymenttype should be Visarrrr\", function () { \r",
+							"     var data = pm.response.json();\r",
+							"     pm.expect(data.paymentType).to.eql('Visarrrr');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"paymentId\": 5,\n    \"paymentType\": \"Visarrrr\"\n}"
+				},
+				"url": {
+					"raw": "https://behawk-backend-service.mybluemix.net/order/payment/2",
+					"protocol": "https",
+					"host": [
+						"behawk-backend-service",
+						"mybluemix",
+						"net"
+					],
+					"path": [
+						"order",
+						"payment",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getPayment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "618cd3d0-40a9-417f-86b4-675eac812906",
+						"exec": [
+							"pm.test(\"response is ok\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Paymenttype should be Visarrrr\", function () { \r",
+							"     var data = pm.response.json();\r",
+							"     pm.expect(data.paymentType).to.eql('Visarrrr');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://behawk-backend-service.mybluemix.net/order/payment/2",
+					"protocol": "https",
+					"host": [
+						"behawk-backend-service",
+						"mybluemix",
+						"net"
+					],
+					"path": [
+						"order",
+						"payment",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateOrderStatus",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "45050c9d-e7c9-45b5-b549-ce5ef0e4367c",
+						"exec": [
+							"pm.test(\"response is ok\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Product id should be 5 from cart\", function () { \r",
+							"     var data = pm.response.json();\r",
+							"     pm.expect(data.\r",
+							"                orderDetail[0].\r",
+							"                product.\r",
+							"                productId\r",
+							"               ).to.eql(5);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Cart status shold be in INPROCESS\", function () { \r",
+							"     var data = pm.response.json();\r",
+							"     pm.expect(data.status).to.eql('INPROCESS');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://behawk-backend-service.mybluemix.net/order/status/2?status=INPROCESS",
+					"protocol": "https",
+					"host": [
+						"behawk-backend-service",
+						"mybluemix",
+						"net"
+					],
+					"path": [
+						"order",
+						"status",
+						"2"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "INPROCESS"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LoginUser",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"fbId\":\"1613277428777674\"\r\n}"
+				},
+				"url": {
+					"raw": "localhost:3000/user/login",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
